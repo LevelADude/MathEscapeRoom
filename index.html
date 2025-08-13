@@ -1,122 +1,474 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | EscapeRoom</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P-Seminar Escape-Room</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="icon" href="Images/Player.png" />
   </head>
+
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=800 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">EscapeRoom</div>
+    <div class="Header">
+      <div class="Header">
+        <img class="HeaderImages"
+          src="Images/logo-lgbtq-hansSachs.png"
+          alt="Logo"
+          class="Starting-Links"
+          onclick="window.location.href='https://hans-sachs-gymnasium.com/startseite';"
+        />
+        <img class="HeaderImages"
+          src="Images/Logo.png"
+          alt="Logo"
+          class="Logo"
+          onclick="window.location.href='index.html';"
+        />
+    </div>      
+    </div>
+
+    <div class="Heading">
+      <h1>Mathe Escape-Room</h1>
+    </div>
+
+    <div class="Heading-Video">
+      <video id="gameplay" autoplay muted class="header-video" onclick="this.muted = !this.muted;">
+        <source src="Video/LogoReveal.mp4" type="video/mp4" />
+        <source src="Video/Trailer.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="container">
+      <div class="Small-heading">
+        <h1>P-Seminar: Escape Rooms in Mathe</h1>
       </div>
     </div>
-    <script>
 
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var warningBanner = document.querySelector("#unity-warning");
+    <div class="container2">
+      <div class="Topic-Buttons">
+        <button
+          class="tablink current"
+          onclick="openTopic(event,'ÜberUns','Team1')"
+        >
+          <img
+            id="Team1"
+            class="icon animation1 now"
+            src="Images/Team.png"
+            alt="Team"
+          />
+        </button>
+        <button class="tablink" onclick="openTopic(event,'Info','Infos')">
+          <img
+            id="Infos"
+            class="icon animation2"
+            src="Images/Info.png"
+            alt="Info"
+          />
+        </button>
+        <button
+          class="tablink"
+          onclick="openTopic(event,'Steuerung','Steuerungen')"
+        >
+          <img
+            id="Steuerungen"
+            class="icon animation2"
+            src="Images/Steuerung.png"
+            alt="Steuerung"
+          />
+        </button>
+        <button class="tablink" onclick="openTopic(event,'Credits','Credit')">
+          <img
+            id="Credit"
+            class="icon animation2"
+            src="Images/Credits.png"
+            alt="Credits"
+          />
+        </button>
+        <button class="tablink" onclick="openTopic(event,'Kontakt','Kontakte')">
+          <img
+            id="Kontakte"
+            class="icon animation2"
+            src="Images/Kontakt.png"
+            alt="Kontakt"
+          />
+        </button>
+      </div>
+    </div>
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
+    <div class="container">
+      <div id="ÜberUns" class="Topic">
+        <div class="Small-heading transition">
+          <h1>Die Entwickler</h1>
+        </div>
+        <div class="Text transition">
+          <p>
+            Dieses Spiel wurde von einem 3-köpfigen Team in einem Zeitraum von
+            sechs Monaten entwickelt. <br>
+            Die Entwickler sind Schüler am Hans-Sachs-Gymnasium Nürnberg und haben im Rahmen des <br>
+            P-Seminars: Mathe Escape-Rooms zusammen, an diesem Projekt gearbeitet. <br>
+            Die Entwickler sind Hagen E. (Hackante), Catarina G. (jayjaysbizarrr) und Ahmed G. (LevelADude)
+          </p>
+        </div>
+        <div class="containerPF">
+          <div class="FadeIn">
+            <div class="card">
+              <div
+                class="card-header"
+                style="background-image: url(Images/Profiles/backH.jpg)"
+              >
+                <div class="card-photo">
+                  <img
+                    src="https://avatars.githubusercontent.com/Hackante"
+                    alt="Profile"
+                    onclick="window.open('https://github.com/Hackante')"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-name">Hackante</h3>
+                <p class="card-description">
+                  Design für User Interface <br/>Scripting in Unity und Visual
+                  Studio
+                </p>
+                <div class="card-button">
+                  <button
+                    onclick="window.open('https://github.com/Hackante')"
+                    class="btn btn-primary"
+                  >
+                    
+                  GitHub
+                  </button>
+                  <button
+                    onclick="window.open('https://twitter.com/Hackante')"
+                    class="btn btn-outline-primary"
+                  >
+                    Twitter
+                  </button>
+                </div>
+              </div>
+            </div>
 
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/MathEscapeRoom.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/MathEscapeRoom.data",
-        frameworkUrl: buildUrl + "/MathEscapeRoom.framework.js",
-        codeUrl: buildUrl + "/MathEscapeRoom.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "P-Seminar EscapeRooms",
-        productName: "EscapeRoom",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
-      };
+            <div class="card">
+              <div
+                class="card-header"
+                style="background-image: url(Images/Profiles/backC.jpg)"
+              >
+                <div class="card-photo">
+                  <img
+                    src="https://avatars.githubusercontent.com/jayjaysbizarrr"
+                    alt="Profile"
+                    onclick="window.open('https://github.com/jayjaysbizarrr')"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-name">jayjaysbizarrr</h3>
+                <p class="card-description">
+                  Design für Game-Assets<br />Design für Spielcharaktere
+                </p>
+                <div class="card-button">
+                  <button
+                    onclick="window.open('https://github.com/jayjaysbizarrr')"
+                    class="btn btn-primary"
+                  >
+                    GitHub
+                  </button>
+                  <button
+                    onclick="window.open('https://twitter.com/notactivejaydyn')"
+                    class="btn btn-outline-primary"
+                  >
+                    Twitter
+                  </button>
+                </div>
+              </div>
+            </div>
 
-      // By default Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
+            <div class="card">
+              <div
+                class="card-header"
+                style="background-image: url(Images/Profiles/backA.jpg)"
+              >
+                <div class="card-photo">
+                  <img
+                    src="https://avatars.githubusercontent.com/LevelADude"
+                    alt="Profile"
+                    onclick="window.open('https://github.com/LevelADude')"
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-name">LevelADude</h3>
+                <p class="card-description">
+                  Design für User Interface<br />Scripting in Unity und Visual
+                  Studio
+                </p>
+                <div class="card-button">
+                  <button
+                    onclick="window.open('https://github.com/LevelADude')"
+                    class="btn btn-primary"
+                  >
+                    GitHub
+                  </button>
+                  <button
+                    onclick="window.open('https://twitter.com/LevelADude')"
+                    class="btn btn-outline-primary"
+                  >
+                    Twitter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
+      <div id="Info" class="Topic" style="display: none">
+        <div class="Small-heading transition">
+          <h1>P-Seminar: Escape-Rooms in Mathe</h1>
+        </div>
+        <div class="Text transition" style="width: 100%;">
+          <div style="display: block;justify-content: center; max-width: 60vw;">
+            <h3>Das P-Seminar</h3>
+            <p>
+              Der Escape-Room wurde als Projekt für das Fach P-Seminar unter dem Thema "Escape-Rooms für den Mathematikunterricht" erstellt. In diesem P-Seminar sollten in Gruppen zu je drei Personen Escape-Rooms mit Matheaufgaben erstellt werden. Die Escape-Rooms sollten für eine spezifische Klassenstufe angepasst entwickelt werden.
+              
+            </p>
+            <h3>Das Spiel</h3>
+            <p>
+              Das Spiel ist für die 9. Klasse des Gymnasiums (G9) in Bayern, Deutschland, gedacht. Die Schüler und Schülerinnen sollen das Spiel in Zweiergruppen spielen (dies ist eine Empfehlung - das Spiel kann in größeren Gruppen oder als Einzelperson gespielt werden). Der Schwerpunkt dieses Escape-Rooms liegt auf "Quadratische Funktionen". Das Spiel enthält aber auch einige Rätsel, die Kenntnisse über Themen erfordern, die in den unteren Klassenstufen behandelt wurden.
+            </p>
+            <h3>Die Idee</h3>
+            <p>
+              Unsere Gruppe hat sich dafür entschieden, ein Escape-Room-Spiel zu entwickeln. Inspiriert wurden wir durch das Mathe-Breakout "<a href="https://mebis.bycs.de/beitrag/teachshare-kurs-mathematischer-escape-room-gefangen-in-der-akademie" class="link FadeIn">Gefangen in der Akademie</a>". Dieses Mathe-Breakout ist auch eine Art Online Escape-Room, aber noch ausbaufähig. Daher wollten wir ein Escape-Room entwickeln, welches auch Spaß zu spielen macht und vom Format her ansprechend ist, daher ein Spiel.
+            </p>
+            <h3>Die Story</h3>
+            <p>
+              Für den Escape-Room musste erstmal eine Hintergrundgeschichte her. Da das Projekt im Dezember 2023 vorgestellt werden soll, haben wir uns entschieden ein Thema zu nehmen, dass mit Weihnachten zu hat. Das Spiel sollte einen entführten Weihnachtsmann haben, der vom Spieler gerettet werden sollte. Als Bösewicht haben wir eine Mischung aus zwei bekannten Figuren gemacht, zum einen dem "Grinch" und zum anderen "Grantelbart" aus der Serie Weihnachtsmann & Co. KG. Daher auch der Name unseres Bösewichts: Grinch-El-Bart. Dieser Bösewicht hat wegen seiner tragischen Kindheitsgeschichte einen Hass auf den Weihnachtsmann. <br><br>Der Spieler soll im Spiel erstmal vom Nordpol (der Basis des Weihnachtsmannes) zum Südpol, der Festung von Grinch-El-Bart reisen. Am Südpol wird der Spieler in der Festung von Grinch-El-Bart festgenommen und muss aus dieser entkommen. Als Abschluss gibt es einen Bosskampf zwischen Grinch-El-Bart und dem Spieler, wenn der Spieler gewinnt, wird der Weihnachtsmann befreit und im Sinne des Weihnachtsgeistes versöhnt sich Grinch-El-Bart wieder mit dem Weihnachtsmann, da ein Missverständnis geklärt wird.
+            </p>
+            <h3>Die Spiel-Entwicklung</h3>
+            <p>
+              Das Spiel, welches entwickelt werden sollte, musste folgende wichtige Voraussetzungen erfüllen: es muss spielbar sein, ohne es herunterladen zu müssen. Um dies zu realisieren, wurde die Spiel-Engine "Unity" verwendet. Diese kann das entwickelte Spiel in ein "WebGL"-Format bringen. Dadurch kann das Spiel auf Webseiten laufen. <br><br>
 
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        container.className = "unity-mobile";
-        canvas.className = "unity-mobile";
+              Um das Spiel gemeinsam effizient zu entwickeln, wurde "GitHub" verwendet. Dadurch kann man das Projekt, welches man von einem Computer geschrieben hat, in ein sogenanntes Repository hochladen. Der Vorteil davon ist, dass man nicht immer auf einen Entwickler warten muss bis er die Dateien teilt, sondern es können mehrere Entwickler gleichzeitig am Projekt weiterarbeiten.
+            </p>
+          </div>
+        </div>
+        <div><img
+          class="Screenshot1 FadeIn"
+          src="Images/Screenshot 1.png"
+          alt="Gameplay"
+        /></div>
+      </div>
 
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+      <div id="Steuerung" class="Topic" style="display: none">
+        <div class="Small-heading transition">
+          <h1>Die Steuerung</h1>
+        </div>
+        <div class="Text transition">
+          <p>
+            Das Spiel ist ein 2D-Plattformer Spiel, mit Gepixelten Figuren. <br>
+            Die Steuerung des Spield wird im folgenden erklärt:
+          </p>
+        </div>
+        <div class="Text transition ControllsContainer" >
+          <div class="ControllsSubContainer" >
+            <div style="justify-content: center;"><img src="Images/WASD.png" alt="Steuerung WASD" style="max-width: 20vw;"></div>
+            <p style="margin: 2vw;"> Durch die WASD-Tasten kann der Spieler nach oben, unten, links und <br>rechts bewegt werden: <br><br>
+              W = nach oben <br>
+              A = nach links <br>
+              S = nach unten <br>
+              D = nach rechts
+            </p>
+          </div>
+          <div class="ControllsSubContainer" >
+            <div><img src="Images/Pfeiltasten.png" alt="Steuerungen Pfeile" style="max-width: 20vw;"></div>
+            <p style="margin: 2vw;">Die Pfeiltasten funktionieren analog zu den WASD-Tasten:
+              <br><br>
+              ↑ = nach oben <br>
+              ← = nach links <br>
+              ↓ = nach unten <br>
+              → = nach rechts
+            </p>
+          </div>
+          <div class="ControllsSubContainer" >
+            <div><img src="Images/Joystick.png" alt="Steuerung Joystick" style="max-width: 15vw;"></div>
+            <p style="margin: 2vw;"> Um mit dem Joystick den Spieler zu bewegen muss der kleine Kreis in der Mitte in die entsprechende Richtung gezogen werden. <br><br>
+              Der Spieler bewegt sich dann in die Richtung, in die der Kreis gezogen wird.
+            </p>
+          </div>
+          <div class="ControllsSubContainer" >
+            <div><img src="Images/intKey.png" alt="Interaction Key" style="max-width: 10vw;transform: rotate(45deg);"></div>
+            <p style="margin: 2vw;">Im Spiel gibt es die Interaktions-Taste, beim drücken dieser Taste können Aufgaben angenommen werden oder Dialoge angezeigt werden.</p>
+          </div>
+        </div>
+      </div>
 
+      <div id="Credits" class="Topic" style="display: none">
+        <div class="Small-heading transition">
+          <h1>Credits</h1>
+        </div>
+        <div class="TextCredit FadeIn">
+          <p>Externe Assets:</p>
+          <ul>
+            <li><a href="https://itch.io/profile/szadiart" class = "link">szadiart</a></li>
+            <ul><li><p><a href="https://szadiart.itch.io/rpg-worlds-ca"class = "link">RPG Worlds Caves</a> - License: view on <a href="https://szadiart.itch.io/rpg-worlds-ca#:~:text=a%20lot%20more-,%3E%3E%3E%20License%20for%20Everyone.,Credit%20is%20not%20required%20but%20appreciated.,-.PNG%20and%20.PSD" class = "link">Website</a></p></li>
+            <li><p><a href="https://szadiart.itch.io/rpg-worlds-houses-and-interiors" class="link">RPG Worlds - Houses and Interiors</a> - License: view on <a href="https://szadiart.itch.io/rpg-worlds-houses-and-interiors#:~:text=and%20closed%20versions%20%2D%2D%2D-,%3E%3E%3E%20License%20for%20Everyone.,Credit%20is%20not%20required%20but%20appreciated.,-.PNG%20and%20.PSD" class = "link">Website</a></p></li>
+            <li><p><a href="https://szadiart.itch.io/rogue-fantasy-catacombs?download" class="link">Rogue Fantasy "catacombs"</a> - License: view on <a href="https://szadiart.itch.io/rogue-fantasy-catacombs?download#:~:text=%2D%2D%2D%20License%20for%20Everyone,PSD%20file%20included." class = "link">Website</a></p></li>
+            </ul>
+            <li><a href="https://itch.io/profile/stealthix" class = "link">stealthix</a>
+              <ul>
+                <li><a href="https://stealthix.itch.io/rpg-nature-tileset"class = "link">RPG Nature Tileset - Seasons</a> - License: <img src="https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+            </li>
+            <li><a href="https://itch.io/profile/zirok" class = "link">zirok</a>
+              <ul>
+                <li><a href="https://zirok.itch.io/topdown-snow-town-tilemap"class = "link">Snowy Town Houses Topdown Tileset</a> - License: <img src="https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+            </li>
+            <li><a href="https://opengameart.org/users/bencreating" class = "link">BenCreating</a>
+              <ul>
+                <li><a href="https://opengameart.org/content/lpc-overworld-0"class = "link">[LPC] Overworld</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+            </li>
+            <li><a href="https://opengameart.org/users/bluecarrot16" class = "link">bluecarrot16</a>
+              <ul>
+                <li><a href="https://opengameart.org/content/lpc-ship"class = "link">[LPC] Ship</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPL%20v2-blue.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-OGA--BY_3.0-purple.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+            </li>
+            <li><a href="https://opengameart.org/users/stendhalgame" class = "link">StendhalGame</a>
+              <ul>
+                <li><a href="https://opengameart.org/content/christmas-tree-0"class="link">Christmas Tree</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;">- asset modified</p></li>
+              </ul>
+            </li>
+            <li><p><a href="https://opengameart.org/users/zabin" class = "link">Zabin</a>, Daniel Cook, yd, Jetrel</p>
+              <ul>
+                <li><a href="https://opengameart.org/content/2d-lost-garden-zelda-style-tiles-winter-theme-with-additions"class="link">2d Lost Garden Zelda style tiles winter theme with additions</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+            </li>
+            <li><a href="https://opengameart.org/users/reemax" class = "link">Reemax</a>
+              <ul>
+                <li><a href="https://opengameart.org/content/lpc-signposts-graves-line-cloths-and-scare-crow"class="link">[LPC] Signposts, graves, line cloths and scare crow</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"></p></li>
+                <li><a href="https://opengameart.org/content/lpc-house-interior-and-decorations"class="link">[LPC] House interior and decorations</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPL%20v2-blue.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+            </li>
+            <li><a href="https://opengameart.org/users/antumdeluge" class = "link">AntumDeluge</a>
+              <ul>
+                <li><a href="https://opengameart.org/content/lpc-wooden-bridge-rework"class="link">LPC Wooden Bridge Rework</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPL%20v2-blue.svg" alt="" style="height: 2vw;">- asset used normally and transformed</p></li>
+              </ul>
+            </li>
+            <li><p><a href="http://opengameart.org/users/sharm" class = "link">Sharm</a>, <a href="https://opengameart.org/users/williamthompsonj" class = "link">William.Thompsonj</a></p>
+              <ul>
+                <li><a href="https://opengameart.org/content/lpc-house-insides"class="link">[LPC] House Insides</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"></p></li>
+                <li><a href="https://opengameart.org/content/lpc-clock-animation"class="link">[LPC] Clock Animation</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"> <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="" style="height: 2vw;"></p></li>
+              </ul>
+              <li><a href="https://craftpix.net/" class = "link">craftpix.net</a>
+                <ul>
+                  <li><p><a href="https://craftpix.net/freebies/xmas-games-gui/"class="link">XMAS GAME - FREE GUI</a> - License: view on <a href="https://craftpix.net/file-licenses/#:~:text=revoke%20the%20license.-,2.%20FREEBIE%20PRODUCTS,-2.1%20CAPABILITIES" class = "link">Website</a></p></li>
+                </ul></li>
+                  <li><a href="https://viexgamer.itch.io/" class = "link">Viexgamer</a>
+                    <ul>
+                      <li><p><a href="https://viexgamer.itch.io/rain-and-snow"class="link">Rain and Snow 2d Game v1.0</a> - License: view on <a href="https://viexgamer.itch.io/rain-and-snow#:~:text=You%20can%20use%20this%20asset%20for%20personal%20and%20commercial%20purpose%2C%20you%20can%20modify%20this%20object%20to%20your%20needs.%20Credit%20is%20not%20required%20but%20would%20be%20appreciated" class = "link">Website</a></p></li>
+                </ul>
+              </li>
+              <li><a href="https://opengameart.org/users/julien" class = "link">Julien</a>
+                <ul>
+                  <li><p><a href="https://opengameart.org/content/sparkles" class = "link">Sparkles</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%203.0-lightgrey.svg" alt="" style="height: 2vw;"></p></li>
+            </ul>
+          </li>
+          <li><a href="https://opengameart.org/users/aroachifoundonmypillow" class = "link">ARoachIFoundOnMyPillow</a>
+            <ul>
+              <li><p><a href="https://opengameart.org/content/16x16-overworld-tiles-0"class="link">16x16 Overworld Tiles</a> - License: <img src="https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg" alt="" style="height: 2vw;"></p></li>
+        </ul>
+      </li>
+            </li>
+          </ul>
+        </div>
+        <div class="TextCredit FadeIn">
+          <p>Music:</p>
+          <ul>
+            <li><p><a href="https://www.silvermansound.com" class="link">Cutting Edge by Shane Ivers</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg"style="height: 2vw;"></p></li>
+            <li><p><a href="https://incompetech.com" class="link">"Holiday Weasel" by Kevin MacLeod</a> - License: <img src="https://img.shields.io/badge/License-CC%20BY%203.0-lightgrey.svg" style="height: 2vw;"></p></li>
+          </ul>
+        </div>
+      </div>
 
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+      <div id="Kontakt" class="Topic" style="display: none">
+        <div class="Small-heading transition">
+          <h1>Kontakt</h1>
+        </div>
+        <div class="Text transition" >
+          <p>
+            Bei Bugs oder Problemen im Spiel, können die Entwickler über Discord oder GitHub kontaktiert werden.<br>
+            Des Weiteren sind Feedback und Verbesserungsvorschläge herzlichst willkommen. <br>
+            <br>
+            Bitte beachte dass dies kein kommerzielles Spiel ist und nur als Schulprojekt entwickelt wurde, <br>
+            daher kann es eine Zeit lang dauern bis die Entwickler auf Anfragen antworten.
 
-        canvas.style.width = "800px";
-        canvas.style.height = "600px";
-      }
+          </p>
+        </div>
+        <div class="Support FadeIn">
+          <div><img src="Images/github-mark-white.png" alt="GitHub" style="width: 10vw;"></div>
+          <div><img src="Images/Email.png" alt="Email" style="width: 10vw;"></div>
+          <div><img src="Images/icon_clyde_white_RGB.png" alt="Discord" style="width: 10vw;"></div>
+        </div>
+        <div class="Support FadeIn">
+          <button onclick="window.open('https://github.com/Hackante/escape-room')" class="KontaktButton">
+            GitHub
+          </button>
+          <button onclick="window.open('mailto:pseminarmatheescaperoom@gmail.com')" class="KontaktButton">
+            Email
+          </button>
+          <button onclick="window.open('https://discord.gg/8UhMXARney')" class="KontaktButton">
+            Discord
+          </button>
+        </div>
+      </div>
+    </div>
 
-      loadingBar.style.display = "block";
+    <div class="Heading2">
+      <h2>Play this game now</h2>
+    </div>
 
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                loadingBar.style.display = "none";
-                fullscreenButton.onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
-              }).catch((message) => {
-                alert(message);
-              });
-            };
+    <div class="container">
+      <div class="Game">
+        <canvas id="unity-canvas" width="800" height="600" tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+        </div>
+        <div id="unity-warning"></div>
+        <div id="unity-footer">
+          <div id="unity-fullscreen-button"></div>
+          <div id="unity-build-title">EscapeRoom</div>
+        </div>
+      </div>
+    </div>
 
-      document.body.appendChild(script);
+      <div class = "ButtonRight">
+        <button
+        class="FullscreenBUTTON"
+        onclick="toggleFullscreen('GAME'); return true"
+      >
+        <img
+          class="FullscreenIcon"
+          src="Images/fullscreen.png"
+          alt="Fullscreen"
+        />
+      </button>
+      </div>
 
-    </script>
+      
+      
+    </div>
+
+    <div class="Heading2">
+      <h2>Feedback :-)</h2>
+    </div>
+
+    <div class= "container">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeyC_yD4d3C3DYvFAsjVSe04jTo0GJkZgWAAMCVS7ST8sxLJA/viewform?embedded=true" width="100%" height="1750" frameborder="0" marginheight="0" marginwidth="0" style="margin-top: 7vw;">Wird geladen…</iframe>
+    </div>
+    
   </body>
 </html>

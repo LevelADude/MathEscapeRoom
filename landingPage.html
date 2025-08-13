@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P-Seminar Escape-Room</title>
+    <script defer src="script.js"></script>
+    <link rel="icon" href="Images/Player.png" />
+
+    <style>
+      @font-face {
+        font-family: pixel;
+        src: url("Fonts/edit-undo/editundo.ttf");
+      }
+
+      body {
+        margin: 0;
+        background-color: aquamarine;
+        font-size: 10vw;
+      }
+
+      .tablink {
+        color: aquamarine;
+        text-align: center;
+        text-decoration: none;
+        font-size: 10vw;
+        cursor: pointer;
+        font-family: pixel;
+        background-color: black;
+        border: none;
+      }
+
+      .container {
+        margin-top: 7vw;
+        background-color: black;
+        box-shadow: 0 3px 12px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        padding: 5vw;
+        position: sticky;
+        width: 100%;
+      }
+
+      .tablink:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body onload= OpenEdge()>
+    <div class="container">
+      <button onclick="OpenEdge()" class="tablink">visit site</button>
+  <p id="demo"></p>
+    </div>
+  </body>
+</html>

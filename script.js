@@ -33,18 +33,20 @@ var canvas = document.getElementById("unity-canvas");
 
   loadingBar.style.display = "block";
 
+  var unityInstance = null; // global variable
+
   var script = document.createElement("script");
   script.src = loaderUrl;
   script.onload = () => {
     createUnityInstance(canvas, config, (progress) => {
       progressBarFull.style.width = 100 * progress + "%";
-    }).then((unityInstance) => {
+    }).then((instance) => {
+      unityInstance = instance; // store it for later
       loadingBar.style.display = "none";
-      fullscreenButton.onclick = () => { unityInstance.SetFullscreen(1); };
     }).catch(alert);
   };
-
   document.body.appendChild(script);
+  
 
 
 video.addEventListener("ended", playNextVideo);
@@ -83,32 +85,10 @@ function OpenEdge() {
   }
 }
 
-function goFullscreen(id) {
-  toggle = 1;
-  var element = document.getElementById(id);
-  if (element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if (element.webkitRequestFullScreen) {
-    element.webkitRequestFullScreen();
-  }
-}
-
-function Exit(){
-  toggle = 0;
-  if (document.exitFullscreen) {
-    document.exitFullscreen();}
-  else if (document.msExitFullscreen) {
-    document.webkitExitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.msExitFullscreen();
-  }
-}
-
-function toggleFullscreen(id) {
-  if(toggle === 0){
-    goFullscreen(id);
-  }
-  else{
-    Exit();
+function toggleFullscreen() {
+  if (unityInstance) {
+    unityInstance.SetFullscreen(1);
+  } else {
+    console.warn("Unity instance not ready yet!");
   }
 }
